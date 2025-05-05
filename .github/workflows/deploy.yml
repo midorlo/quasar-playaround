@@ -23,7 +23,7 @@ jobs:
         run: npm install
 
       - name: Build Quasar SPA
-        run: quasar build -m spa
+        run: npx quasar build -m spa
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
