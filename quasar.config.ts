@@ -42,6 +42,9 @@ export default defineConfig((ctx) => {
         browser: [ 'es2022', 'firefox115', 'chrome115', 'safari14' ],
         node: 'node20'
       },
+      publicPath: process.env.NODE_ENV === 'production'
+        ? '/quasar-playaround/'
+        : '/',
 
       typescript: {
         strict: true,
@@ -67,7 +70,7 @@ export default defineConfig((ctx) => {
 
       // extendViteConf (viteConf) {},
       // viteVuePluginOptions: {},
-      
+
       vitePlugins: [
         ['@intlify/unplugin-vue-i18n/vite', {
           // if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
