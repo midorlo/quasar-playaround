@@ -1,1 +1,7 @@
-// app global css in SCSS form
+@import '@fontsource/inter';
+
+body {
+
+  // Use the Inter Font
+  font-family: 'Inter', sans-serif;
+}
