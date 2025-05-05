@@ -138,6 +138,7 @@ dist
 # Jetbrains
 .idea
 *.iml
+.run
 
 .DS_Store
 .thumbs.db
