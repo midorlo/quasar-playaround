@@ -1,18 +1,30 @@
 import type { RouteRecordRaw } from 'vue-router';
 
-const routes: RouteRecordRaw[] = [
+const defaultsRoutes: RouteRecordRaw[] = [
+  {
+    path: '/defaults',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: 'roles', component: () => import('pages/defaults/DefaultRolesPage.vue') },
+    ],
+  },
+];
+
+const topLevelRoutes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/IndexPage.vue') }],
   },
+];
 
-  // Always leave this as last one,
-  // but you can also remove it
+const fallbackRoutes: RouteRecordRaw[] = [
   {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue'),
   },
 ];
+
+const routes: RouteRecordRaw[] = [...defaultsRoutes, ...topLevelRoutes, ...fallbackRoutes];
 
 export default routes;
