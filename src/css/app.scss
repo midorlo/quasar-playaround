@@ -1,33 +1,119 @@
+// src/css/app.scss
+// Hier können Sie Ihre globalen Anwendungsstile definieren
+
+// Behalten Sie Quasar-eigene Imports bei, falls vorhanden und benötigt
+// @import 'quasar.variables.scss'; // Kann hier importiert werden oder über quasar.config.js geladen werden
+
+// ====================================================================
+// 1. Font-Einbindung: Inter via @fontsource (Variable Font)
+// Stellen Sie sicher, dass Sie '@fontsource/inter' installiert haben: npm install @fontsource/inter
+// Das '~' Präfix ist wichtig, damit Sass/Webpack die Datei im node_modules-Ordner findet
 @import '@fontsource/inter';
 
+// ====================================================================
+// 2. Globale Stil-Anpassungen (angewendet auf den Body oder Root)
 body {
+  // Wenden Sie den Inter Font als Standard-Schriftart an.
+  // 'Inter var' ist der spezifische Name für die variable Font-Instanz von @fontsource.
+  font-family: 'Inter var', sans-serif;
 
-  // Use the Inter Font
-  font-family: 'Inter', sans-serif;
+  // Überschreiben von Quasar Schatten-Variablen für einen weicheren, moderneren Look
+  // Diese Schatten werden von Komponenten verwendet, wenn die 'elevated'-Prop gesetzt ist
+  --q-shadow-1: 0px 1px 3px 0px rgba(0,0,0,0.08), 0px 1px 2px 0px rgba(0,0,0,0.14);
+  --q-shadow-2: 0px 3px 6px 0px rgba(0,0,0,0.10), 0px 3px 6px 0px rgba(0,0,0,0.16);
+  --q-shadow-3: 0px 5px 10px 0px rgba(0,0,0,0.12), 0px 5px 8px 0px rgba(0,0,0,0.18);
+  --q-shadow-4: 0px 6px 12px 0px rgba(0,0,0,0.13), 0px 6px 10px 0px rgba(0,0,0,0.19);
+  --q-shadow-5: 0px 8px 16px 0px rgba(0,0,0,0.14), 0px 8px 14px 0px rgba(0,0,0,0.20);
+  --q-shadow-6: 0px 10px 20px 0px rgba(0,0,0,0.15), 0px 10px 18px 0px rgba(0,0,0,0.21);
+  --q-shadow-7: 0px 12px 24px 0px rgba(0,0,0,0.16), 0px 12px 20px 0px rgba(0,0,0,0.22);
+  --q-shadow-8: 0px 14px 28px 0px rgba(0,0,0,0.17), 0px 14px 22px 0px rgba(0,0,0,0.23);
+  --q-shadow-9: 0px 16px 32px 0px rgba(0,0,0,0.18), 0px 16px 24px 0px rgba(0,0,0,0.24);
+  --q-shadow-10: 0px 18px 36px 0px rgba(0,0,0,0.19), 0px 18px 26px 0px rgba(0,0,0,0.25);
+  --q-shadow-11: 0px 20px 40px 0px rgba(0,0,0,0.20), 0px 20px 28px 0px rgba(0,0,0,0.26);
+  --q-shadow-12: 0px 22px 44px 0px rgba(0,0,0,0.21), 0px 22px 30px 0px rgba(0,0,0,0.27);
+  --q-shadow-13: 0px 24px 48px 0px rgba(0,0,0,0.22), 0px 24px 32px 0px rgba(0,0,0,0.28);
+  --q-shadow-14: 0px 26px 52px 0px rgba(0,0,0,0.23), 0px 26px 34px 0px rgba(0,0,0,0.29);
+  --q-shadow-15: 0px 28px 56px 0px rgba(0,0,0,0.24), 0px 28px 36px 0px rgba(0,0,0,0.30);
+  --q-shadow-16: 0px 30px 60px 0px rgba(0,0,0,0.25), 0px 30px 38px 0px rgba(0,0,0,0.31);
+  --q-shadow-17: 0px 32px 64px 0px rgba(0,0,0,0.26), 0px 32px 40px 0px rgba(0,0,0,0.32);
+  --q-shadow-18: 0px 34px 68px 0px rgba(0,0,0,0.27), 0px 34px 42px 0px rgba(0,0,0,0.33);
+  --q-shadow-19: 0px 36px 72px 0px rgba(0,0,0,0.28), 0px 36px 44px 0px rgba(0,0,0,0.34);
+  --q-shadow-20: 0px 38px 76px 0px rgba(0,0,0,0.29), 0px 38px 46px 0px rgba(0,0,0,0.35);
+  --q-shadow-21: 0px 40px 80px 0px rgba(0,0,0,0.30), 0px 40px 48px 0px rgba(0,0,0,0.36);
+  --q-shadow-22: 0px 42px 84px 0px rgba(0,0,0,0.31), 0px 42px 50px 0px rgba(0,0,0,0.37);
+  --q-shadow-23: 0px 44px 88px 0px rgba(0,0,0,0.32), 0px 44px 52px 0px rgba(0,0,0,0.38);
+  --q-shadow-24: 0px 46px 92px 0px rgba(0,0,0,0.33), 0px 46px 54px 0px rgba(0,0,0,0.39);
 
-  // Use softer shadows
-  --q-shadow-1: 0px 1px 3px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 0px rgba(0, 0, 0, 0.14);
-  --q-shadow-2: 0px 3px 6px 0px rgba(0, 0, 0, 0.10), 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
-  --q-shadow-3: 0px 5px 10px 0px rgba(0, 0, 0, 0.12), 0px 5px 8px 0px rgba(0, 0, 0, 0.18);
-  --q-shadow-4: 0px 6px 12px 0px rgba(0, 0, 0, 0.13), 0px 6px 10px 0px rgba(0, 0, 0, 0.19);
-  --q-shadow-5: 0px 8px 16px 0px rgba(0, 0, 0, 0.14), 0px 8px 14px 0px rgba(0, 0, 0, 0.20);
-  --q-shadow-6: 0px 10px 20px 0px rgba(0, 0, 0, 0.15), 0px 10px 18px 0px rgba(0, 0, 0, 0.21);
-  --q-shadow-7: 0px 12px 24px 0px rgba(0, 0, 0, 0.16), 0px 12px 20px 0px rgba(0, 0, 0, 0.22);
-  --q-shadow-8: 0px 14px 28px 0px rgba(0, 0, 0, 0.17), 0px 14px 22px 0px rgba(0, 0, 0, 0.23);
-  --q-shadow-9: 0px 16px 32px 0px rgba(0, 0, 0, 0.18), 0px 16px 24px 0px rgba(0, 0, 0, 0.24);
-  --q-shadow-10: 0px 18px 36px 0px rgba(0, 0, 0, 0.19), 0px 18px 26px 0px rgba(0, 0, 0, 0.25);
-  --q-shadow-11: 0px 20px 40px 0px rgba(0, 0, 0, 0.20), 0px 20px 28px 0px rgba(0, 0, 0, 0.26);
-  --q-shadow-12: 0px 22px 44px 0px rgba(0, 0, 0, 0.21), 0px 22px 30px 0px rgba(0, 0, 0, 0.27);
-  --q-shadow-13: 0px 24px 48px 0px rgba(0, 0, 0, 0.22), 0px 24px 32px 0px rgba(0, 0, 0, 0.28);
-  --q-shadow-14: 0px 26px 52px 0px rgba(0, 0, 0, 0.23), 0px 26px 34px 0px rgba(0, 0, 0, 0.29);
-  --q-shadow-15: 0px 28px 56px 0px rgba(0, 0, 0, 0.24), 0px 28px 36px 0px rgba(0, 0, 0, 0.30);
-  --q-shadow-16: 0px 30px 60px 0px rgba(0, 0, 0, 0.25), 0px 30px 38px 0px rgba(0, 0, 0, 0.31);
-  --q-shadow-17: 0px 32px 64px 0px rgba(0, 0, 0, 0.26), 0px 32px 40px 0px rgba(0, 0, 0, 0.32);
-  --q-shadow-18: 0px 34px 68px 0px rgba(0, 0, 0, 0.27), 0px 34px 42px 0px rgba(0, 0, 0, 0.33);
-  --q-shadow-19: 0px 36px 72px 0px rgba(0, 0, 0, 0.28), 0px 36px 44px 0px rgba(0, 0, 0, 0.34);
-  --q-shadow-20: 0px 38px 76px 0px rgba(0, 0, 0, 0.29), 0px 38px 46px 0px rgba(0, 0, 0, 0.35);
-  --q-shadow-21: 0px 40px 80px 0px rgba(0, 0, 0, 0.30), 0px 40px 48px 0px rgba(0, 0, 0, 0.36);
-  --q-shadow-22: 0px 42px 84px 0px rgba(0, 0, 0, 0.31), 0px 42px 50px 0px rgba(0, 0, 0, 0.37);
-  --q-shadow-23: 0px 44px 88px 0px rgba(0, 0, 0, 0.32), 0px 44px 52px 0px rgba(0, 0, 0, 0.38);
-  --q-shadow-24: 0px 46px 92px 0px rgba(0, 0, 0, 0.33), 0px 46px 54px 0px rgba(0, 0, 0, 0.39);
+  // ... weitere globale Body-Stile, falls benötigt
 }
+
+// ====================================================================
+// 3. Spezifische Komponenten-Stile (Beispiel: Modernisierung des q-header)
+
+.q-header {
+  // Beispiel: Hintergrund und Textfarbe für einen helleren, modernen Look
+  background-color: #ffffff; // Solides weiß als Hintergrund
+  color: #333; // Dunkle Textfarbe für guten Kontrast
+
+  // --- Optionale Hintergründe ---
+  // Beispiel: Leicht transparenter Hintergrund (ggf. für "Glas"-Effekt benötigt)
+  // background-color: rgba(#ffffff, 0.95);
+
+  // Beispiel: Ein leichter Farbverlauf
+  // background: linear-gradient to right top, #e0e0e0, #ffffff;
+
+  // --- Schatten ---
+  // Der Schatten wird global von den --q-shadow-X Variablen gesteuert, wenn die 'elevated' Prop gesetzt ist.
+  // Sie können 'elevated="false"' im <q-header> nutzen, um den Schatten ganz zu entfernen.
+  // Wenn Sie einen spezifischen Schatten nur für den Header möchten, der anders als --q-shadow-2 ist:
+  // box-shadow: 0 2px 4px rgba(0,0,0,0.08); // Ein sehr subtiler Schatten
+  // Oder: box-shadow: none; // Schatten komplett entfernen
+
+  // --- "Glas"-Effekt (Optional & experimentell, Browser-Unterstützung prüfen) ---
+  // Funktioniert nur, wenn der background-color eine Transparenz (< 1) hat
+  // backdrop-filter: blur(8px);
+  // -webkit-backdrop-filter: blur(8px); // Für Safari
+}
+
+// Anpassungen der Toolbar im Header
+.q-header .q-toolbar {
+  min-height: 64px; // Standardhöhe erhöhen für ein luftigeres Gefühl
+  padding: 0 24px; // Horizontalen Abstand anpassen
+
+  // Anpassung für die "dense" (dichte) Variante der Toolbar
+  &.q-toolbar--dense {
+    min-height: 48px; // Angepasste Höhe für die dichte Toolbar
+  }
+
+  // Beispiel: Anpassung des Titels in der Toolbar
+  .q-toolbar__title {
+    font-size: 1.3rem; // Schriftgröße anpassen
+    font-weight: 600; // Mittlere Schriftstärke
+    // margin-left: 8px; // Abstand nach links (falls z.B. ein Icon davor ist)
+  }
+
+  // Beispiel: Abstand zwischen Toolbar-Items
+  .q-btn, .q-icon, .q-avatar {
+    margin-right: 8px; // Etwas mehr Abstand zwischen den Elementen
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+
+// ====================================================================
+// Hier können Sie weitere spezifische Komponenten-Stile hinzufügen
+// z.B. für QBtn, QCard, QInput etc.
+
+
+// Beispiel: Abgerundete Buttons (Alternative zur globalen border-radius Variable)
+// .q-btn {
+//    border-radius: 24px; // Starke Rundung
+// }
+
+
+// Beispiel: Weniger Schatten bei Cards (Alternative zur globalen Schatten-Variable)
+// .q-card {
+//    box-shadow: var(--q-shadow-4); // Nutzt den sanfteren Schatten Level 4
+// }
