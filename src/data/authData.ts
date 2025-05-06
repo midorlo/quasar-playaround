@@ -1,6 +1,6 @@
 import type { Role } from 'src/types/authTypes';
 
-const roleAdmin: Role = { id: 1, title: 'Administrator' };
+const roleAdmin: Role = { id: 1, title: 'Administrator', description:"Admins" };
 const roleModerator: Role = { id: 2, title: 'Moderator' };
 const roleAuthor: Role = { id: 3, title: 'Author' };
 const roleUser: Role = { id: 4, title: 'User' };
