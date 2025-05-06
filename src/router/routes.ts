@@ -5,7 +5,7 @@ const defaultsRoutes: RouteRecordRaw[] = [
     path: '/defaults',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: 'roles', component: () => import('pages/defaults/DefaultRolesPage.vue') },
+      { name: 'roles-demo', path: 'roles', component: () => import('pages/defaults/DefaultRolesPage.vue') },
     ],
   },
 ];
@@ -14,7 +14,7 @@ const topLevelRoutes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/IndexPage.vue') }],
+    children: [{ name: 'home',  path: '', component: () => import('pages/IndexPage.vue') }],
   },
 ];
 

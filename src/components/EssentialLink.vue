@@ -14,22 +14,20 @@
 
     <q-item-section>
       <q-item-label>{{ title }}</q-item-label>
-      <q-item-label caption>{{ caption }}</q-item-label>
+      <q-item-label caption>{{ caption || '' }}</q-item-label>
     </q-item-section>
   </q-item>
 </template>
 
 <script setup lang="ts">
-export interface EssentialLinkProps {
-  title: string;
-  caption?: string;
-  link?: string;
-  icon?: string;
-};
+import { defineProps } from 'vue';
+import type { EssentialLinkProps } from 'src/types/navigationTypes';
 
-withDefaults(defineProps<EssentialLinkProps>(), {
-  caption: '',
-  link: '#',
-  icon: '',
-});
+// Definiere das Prop als "required" Objekt vom Typ EssentialLinkProps
+const props = defineProps<{
+  linkData: EssentialLinkProps; // "linkData" ist das prop, das das Objekt enthält
+}>();
+
+// Die einzelnen Eigenschaften des Props extrahieren
+const { title, caption, icon, link } = props.linkData;
 </script>

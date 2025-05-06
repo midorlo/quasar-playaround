@@ -1,25 +1,25 @@
 @import '@fontsource/inter';
 
-// Farben
-$bg1: #f8f8f8;
-$primary: #137fad;
-$primary-light: #358cb1;
-$white: #ffffff;
+// Farben und globale Variablen
+:root {
+  --bg1: #f8f8f8;
+  --primary: #137fad;
+  --primary-light: #358cb1;
+  --white: #ffffff;
+}
 
-// Abstände
+// Abstände und Höhen als SCSS-Variablen
 $spacing-xs: 8px;
 $spacing-md: 24px;
-
-// Höhen
 $header-height: 64px;
 $header-height-dense: 48px;
 
-// Schatten-Basis-Parameter
+// Schatten-Parameter
 $shadow-opacity-1: 0.08;
 $shadow-opacity-2: 0.14;
 $shadow-step: 0.01; // Erhöhung der Opazität pro Schritt
 
-// CSS Variablen für Schatten generieren
+// Mixin für Schatten
 @mixin generate-shadows {
   @for $i from 1 through 24 {
     $opacity1: $shadow-opacity-1 + ($i - 1) * $shadow-step;
@@ -35,40 +35,25 @@ $shadow-step: 0.01; // Erhöhung der Opazität pro Schritt
 
 body {
   font-family: 'Inter var', sans-serif;
-  background: $bg1;
-
-  // Schatten-Variablen generieren
+  background: var(--bg1);
   @include generate-shadows;
 }
 
 .q-header {
-  color: $primary;
-  background: rgba($white, 0);
-
+  color: var(--primary);
+  background: rgba(var(--white), 0);
   .q-toolbar {
     min-height: $header-height;
     padding: 0 $spacing-md;
-
-    &.q-toolbar--dense {
-      min-height: $header-height-dense;
-    }
-
-    .q-btn, .q-icon, .q-avatar {
-      margin-right: $spacing-xs;
-
-      &:last-child {
-        margin-right: 0;
-      }
-    }
   }
 }
 
 .q-drawer {
-  color: $primary;
-  background: rgba($white, 0);
+  color: var(--primary);
+  background: rgba(var(--white), 0);
 
   &.q-drawer--mini {
-    color: $primary-light;
+    color: var(--primary-light);
   }
 }
 

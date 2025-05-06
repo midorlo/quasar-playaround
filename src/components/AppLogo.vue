@@ -1,35 +1,29 @@
 <template>
-
-  <div class="row items-center logo-box">
+  <div class="logo-box">
     <img
       src="https://cdn.quasar.dev/logo-v2/svg/logo.svg"
       alt="Website Logo"
-      class="logo-image rounded-borders q-mr-sm"
+      class="logo-image"
     />
-
     <span>Midorlo's Playground</span>
   </div>
 </template>
 
-<script lang="ts" setup>
-</script>
+<script lang="ts" setup></script>
 
 <style scoped lang="scss">
 .logo-box {
+  display: flex;
+  align-items: center;
   background-color: #f5f5f5;
   border: 1px solid #cccccc;
   border-radius: 999px;
-  padding: 8px 16px 8px 8px;
-  flex-shrink: 0;
-  flex-grow: 0;
+  padding: 8px 16px;
 }
 
 .logo-image {
   height: 24px;
-}
-
-.logo-box {
-  align-items: center;
+  margin-right: 8px;
 }
 
 .logo-box span {

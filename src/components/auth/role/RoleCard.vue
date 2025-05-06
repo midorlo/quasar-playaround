@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, reactive } from 'vue';
 import type { PropType } from 'vue';
 import type { Role } from 'src/types/authTypes';
 
@@ -25,7 +25,7 @@ export default defineComponent({
   },
   inheritAttrs: true,
   setup(props) {
-    const item = ref<Role>(props.role);
+    const item = reactive(props.role);
 
     return {
       item,

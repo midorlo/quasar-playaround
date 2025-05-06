@@ -1,43 +1,32 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <example-component
-      title="Example component"
-      active
-      :todos="todos"
-      :meta="meta"
-    ></example-component>
+  <q-page class="q-pa-md">
+    <q-card flat style="background: transparent">
+      <q-card-section horizontal>
+        <q-card-section>
+          <q-card class="q-pa-md">
+            <q-title text="Page Title" pageTitle />
+            <q-title text="Section Title" section-title />
+          </q-card>
+        </q-card-section>
+        <q-card-section>
+          <q-card class="q-pa-md"></q-card>
+        </q-card-section>
+        <q-card-section>
+          <q-card class="q-pa-md"></q-card>
+        </q-card-section>
+      </q-card-section>
+    </q-card>
   </q-page>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import type { Todo, Meta } from 'components/models';
-import ExampleComponent from 'components/ExampleComponent.vue';
-
-const todos = ref<Todo[]>([
-  {
-    id: 1,
-    content: 'ct1'
-  },
-  {
-    id: 2,
-    content: 'ct2'
-  },
-  {
-    id: 3,
-    content: 'ct3'
-  },
-  {
-    id: 4,
-    content: 'ct4'
-  },
-  {
-    id: 5,
-    content: 'ct5'
-  }
-]);
-
-const meta = ref<Meta>({
-  totalCount: 1200
-});
+import QTitle from 'components/general/QTitle.vue';
 </script>
+
+<style lang="scss">
+.q-card {
+  background: linear-gradient(to bottom right, #ffffff, #e5e5e5);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  mix-blend-mode: multiply;
+}
+</style>
