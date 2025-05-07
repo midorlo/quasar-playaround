@@ -1,23 +1,17 @@
+//router/routes.ts
+
 import type { RouteRecordRaw } from 'vue-router';
+import { generateRoutesFromMenuItems } from 'src/data/navigationData';
 
-const defaultsRoutes: RouteRecordRaw[] = [
-  {
-    path: '/defaults',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [
-      { name: 'roles-demo', path: 'roles', component: () => import('pages/defaults/DefaultRolesPage.vue') },
-      { name: 'q-item-demo', path: 'q-item', component: () => import('pages/defaults/QItemPage.vue') },
-    ],
-  },
-];
 
-const topLevelRoutes: RouteRecordRaw[] = [
+const generatedRoutes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ name: 'home',  path: '', component: () => import('pages/IndexPage.vue') }],
+    children: generateRoutesFromMenuItems()
   },
 ];
+
 
 const fallbackRoutes: RouteRecordRaw[] = [
   {
@@ -26,6 +20,10 @@ const fallbackRoutes: RouteRecordRaw[] = [
   },
 ];
 
-const routes: RouteRecordRaw[] = [...defaultsRoutes, ...topLevelRoutes, ...fallbackRoutes];
+// Kombinierte Routen
+const routes: RouteRecordRaw[] = [
+  ...generatedRoutes,
+  ...fallbackRoutes,
+];
 
 export default routes;

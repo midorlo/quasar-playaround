@@ -1,7 +1,7 @@
 <template>
   <q-layout view="hhh Lpr lFf">
     <q-header>
-        <header-menu />
+      <header-menu />
     </q-header>
 
     <q-drawer
@@ -14,8 +14,11 @@
       @mouseout="toggleMiniState(true)"
     >
       <q-list>
-        <q-item-label header> Essential Links</q-item-label>
-        <essential-link v-for="item in data" :key="item.title" :link-data="item"></essential-link>
+        <menu-item-entry
+          v-for="item in menuItems"
+          :key="item.title"
+          :menu-item="item"
+        ></menu-item-entry>
       </q-list>
     </q-drawer>
 
@@ -27,29 +30,13 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import EssentialLink from 'components/EssentialLink.vue';
-import type { EssentialLinkProps } from 'src/types/navigationTypes';
 import HeaderMenu from 'components/HeaderMenu.vue';
+import { navigationMenuItemsData } from 'src/data/navigationData';
+import MenuItemEntry from 'components/navigation/MenuItemEntry.vue';
 
-const linksList: EssentialLinkProps[] = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev',
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework',
-  },
-  // Add remaining links
-];
-
+const menuItems = navigationMenuItemsData;
 const leftDrawerOpen = ref(false);
 const miniState = ref(true);
-const data = ref(linksList);
 
 function toggleMiniState(state: boolean) {
   miniState.value = state;

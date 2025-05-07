@@ -1,99 +1,71 @@
-import type { NavigationMenu,NavigationMenuItem } from 'src/types/navigationTypes';
-import { keyRoles } from 'src/data/authData';
+// data/navigationData.ts
 
-const miHome : NavigationMenuItem = {
+import type { NavigationMenuItem } from 'src/types/navigationTypes';
+import type { RouteRecordRaw } from 'vue-router';
+
+const miHome: NavigationMenuItem = {
   id: 1000,
   title: 'Home',
   icon: 'home',
   position: 1,
-  routeName: 'home',
-  enabled: true
-}
+  enabled: true,
+  route: {
+    id: 1000,
+    name: 'home',
+    path: '/',
+    component: 'IndexPage.vue',
+    lazyLoadComponent: true,
+  }
+};
 
-const miUserHome : NavigationMenuItem = {
-  id: 2000,
-  title: 'User Home',
+const miRolesDemo: NavigationMenuItem = {
+  id: 3001,
+  title: 'Roles Demo',
   icon: 'home',
   position: 1,
-  routeName: 'home',
-  rolesAllowed: [],
-  rolesDenied: [
-    keyRoles.Guest,
-    keyRoles.Banned,
-  ],
-  enabled: true
-}
-
-const miRolesDemo : NavigationMenuItem = {
-  id: 2000,
-  title: 'Roles Demo',
-  icon: 'settings',
-  position: 1,
-  routeName: '/defaults/roles',
-  rolesAllowed: [],
-  rolesDenied: [
-    keyRoles.Guest,
-    keyRoles.Banned,
-  ],
-  enabled: true
-}
-function createPlaceholder(idx: number): NavigationMenuItem {
-  return  {
-    id: idx,
-    title: 'Roles Demo',
-    icon: 'settings',
-    position: 1,
-    routeName: '/defaults/roles',
-    rolesAllowed: [],
-    rolesDenied: [
-      keyRoles.Guest,
-      keyRoles.Banned,
-    ],
-    enabled: true
+  enabled: true,
+  route: {
+    id: 3001,
+    name: 'roles-demo',
+    path: 'roles',
+    component: '/defaults/DefaultRolesPage.vue',
+    lazyLoadComponent: false,
   }
-}
+};
 
-const mHome : NavigationMenu = {
-  id: 100,
-  title: 'Menu',
-  caption: 'Overview of the application',
+const miQItemDemo: NavigationMenuItem = {
+  id: 3002,
+  title: 'Q-Item Demo',
+  icon: 'home',
+  position: 2,
   enabled: true,
-  icon: 'dashboard',
-  position: 1,
-  rolesDenied: [
-    keyRoles.Banned,
-  ],
-  menuItems: [
-    miHome
-  ]
-}
+  route: {
+    id: 3002,
+    name: 'q-item-demo',
+    path: 'qitem',
+    component: 'pages/defaults/QItemPage.vue',
+    lazyLoadComponent: false,
+  }
+};
 
-const mUserHome : NavigationMenu = {
-  id: 200,
-  title: 'User Menu',
-  caption: 'Overview of the application',
-  enabled: true,
-  icon: 'dashboard',
-  position: 1,
-  rolesDenied: [
-    keyRoles.Banned,
-  ],
-  menuItems: [
-    miUserHome
-  ]
-}
-
-export const navigationMenuData: NavigationMenu[] = [
-  mHome,
-  mUserHome
-];
 export const navigationMenuItemsData: NavigationMenuItem[] = [
   miHome,
   miRolesDemo,
-  createPlaceholder(1),
-  createPlaceholder(2),
-  createPlaceholder(3),
-  createPlaceholder(4),
-  createPlaceholder(7),
-  createPlaceholder(8),
+  miQItemDemo,
 ];
+
+export function generateRoutesFromMenuItems(): RouteRecordRaw[] {
+  return navigationMenuItemsData
+    .filter(item => item.enabled)
+    .map(item => {
+      const path = item.route.path;
+      const routeName = item.route.name;
+      const componentPath = `../pages/${item.route.component}`;
+      const component = () => import(/* @vite-ignore */componentPath);
+      return {
+        name: routeName,
+        path: path,
+        component: component,
+      };
+    });
+}

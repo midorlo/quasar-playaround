@@ -3,8 +3,31 @@ import type { Role } from 'src/types/authTypes';
 /**
  * Represents a single menu item in the application.
  */
-export interface NavigationMenuItem {
+export interface NavigationMenuItemRoute{
+  /** Unique identifier for the menu item. */
+  id: number;
+  /** Name of the route associated with the menu item. */
+  name: string;
+  /** Page component associated with the menu item. */
+  path: string;
+  /**
+   * Page component associated with the menu item.
+   * Beispiel: '/src/pages/IndexPage.vue'.
+   *
+   * Hinweis: Da Vue-Router Lazy Loading verwendet, ist es nicht notwendig, den Pfad zu importieren.
+   */
+  component: string;
+  lazyLoadComponent?: boolean;
+  /** Roles whitelist.  */
+  rolesAllowed?: Role[];
+  /** Roles blacklist */
+  rolesDenied?: Role[];
+}
 
+/**
+ * Represents a single menu item in the application.
+ */
+export interface NavigationMenuItem {
   /** Unique identifier for the menu item. */
   id: number;
   /** Identifier of the menu this item belongs to. No value means its at root level */
@@ -18,15 +41,10 @@ export interface NavigationMenuItem {
   caption?: string;
   /** Optional icon associated with the menu item. */
   icon?: string;
-
-  /** Name of the route associated with the menu item. */
-  routeName: string;
   /** Indicates whether the menu item is enabled. */
   enabled: boolean;
-  /** Roles whitelist.  */
-  rolesAllowed?: Role[];
-  /** Roles blacklist */
-  rolesDenied?: Role[];
+  /** router configuration. */
+  route: NavigationMenuItemRoute;
 }
 
 /**
