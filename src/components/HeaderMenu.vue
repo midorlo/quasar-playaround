@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-xl">
+  <div class="q-pa-md">
     <q-toolbar class="header-toolbar q-pl-xl">
 
       <!-- Logo links -->

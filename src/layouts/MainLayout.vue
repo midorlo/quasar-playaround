@@ -10,16 +10,20 @@
       :mini="miniState"
       :mini-to="50"
       :breakpoint="640"
-      @mouseover="toggleMiniState(false)"
-      @mouseout="toggleMiniState(true)"
+      style="padding-left: 16px;"
     >
-      <q-list>
-        <menu-item-entry
-          v-for="item in menuItems"
-          :key="item.title"
-          :menu-item="item"
-        ></menu-item-entry>
-      </q-list>
+      <q-card class="custom-card">
+        <q-card-section>
+          <q-list class="q-pa-none">
+            <menu-item-entry
+              v-for="item in menuItems"
+              :key="item.title"
+              :menu-item="item"
+              class="q-pl-xl"
+            ></menu-item-entry>
+          </q-list>
+        </q-card-section>
+      </q-card>
     </q-drawer>
 
     <q-page-container>
@@ -36,9 +40,17 @@ import MenuItemEntry from 'components/navigation/MenuItemEntry.vue';
 
 const menuItems = navigationMenuItemsData;
 const leftDrawerOpen = ref(false);
-const miniState = ref(true);
-
-function toggleMiniState(state: boolean) {
-  miniState.value = state;
-}
+const miniState = ref(false);
 </script>
+<style scoped>
+.custom-drawer {
+  margin-left: 116px; /* Hier kannst du den gewünschten Abstand anpassen */
+  padding-left: 110px;
+}
+.custom-card {
+  background: transparent;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1), inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+}
+</style>
