@@ -1,7 +1,12 @@
 <template>
-  <q-toolbar>
-    <q-btn flat dense round icon="menu" aria-label="Menu"  />
-    <q-avatar icon="home" rounded color="primary" text-color="white" />
+  <div class="q-pa-xl">
+    <q-toolbar class="header-toolbar q-pl-xl">
+
+      <!-- Logo links -->
+    <q-btn flat dense round icon="menu" aria-label="Menu" />
+    <img src="~assets/logo-onlydev.png" alt="logo" class="logo" />
+
+    <!-- Suchleiste zentriert -->
     <q-space />
     <q-input
       v-model="searchInput"
@@ -12,13 +17,14 @@
       clearable
       standout
       type="text"
-      style="width: 60%"
+      style="width: 40%"
     />
-    <q-toolbar class="header-container">
-      <q-btn flat icon="notifications" class="icon-style" ripple />
-      <q-btn flat icon="account_circle" class="icon-style" ripple />
-    </q-toolbar>
+
+    <!-- Benachrichtigungs- und Kontosymbole rechts -->
+    <q-btn flat icon="notifications" class="icon-style" ripple />
+    <q-btn flat icon="account_circle" class="icon-style" ripple />
   </q-toolbar>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -28,20 +34,44 @@ const searchInput = ref('');
 </script>
 
 <style scoped>
+/* Logo */
+.logo {
+  max-height: 48px;
+  padding-left: 16px;
+}
+
+
+/* Container der Suchleiste */
 .search-container {
-  border-radius: 16px; /* Abgerundete Ecken für das Container-Div */
+  border-radius: 16px;
   box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
   mix-blend-mode: multiply;
+  width: 100%;
 }
 
-.header-container {
-  width: auto;
-}
-
-.q-toolbar {
+/* Flexbox-Layout für Toolbar */
+.header-toolbar {
   display: flex;
-  justify-content: flex-end;
-  padding: 0;
+  justify-content: space-between; /* Elemente verteilen sich von links nach rechts */
+  align-items: center;
+  padding: 0; /* Keine Margins */
   min-width: 0;
+  background-color: transparent; /* Transparenter Hintergrund */
+}
+
+/* Die Button-Größen und Icons anpassen */
+.icon-style {
+  font-size: 20px;
+}
+
+/* Maximale Breite für kleine Bildschirme */
+@media (max-width: 768px) {
+  .search-container {
+    width: 60%; /* Suchleiste wird breiter auf mobilen Geräten */
+  }
+
+  .logo {
+    max-height: 40px;
+  }
 }
 </style>

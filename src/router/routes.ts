@@ -6,6 +6,7 @@ const defaultsRoutes: RouteRecordRaw[] = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { name: 'roles-demo', path: 'roles', component: () => import('pages/defaults/DefaultRolesPage.vue') },
+      { name: 'q-item-demo', path: 'q-item', component: () => import('pages/defaults/QItemPage.vue') },
     ],
   },
 ];
