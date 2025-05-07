@@ -24,9 +24,5 @@ import QTitle from 'components/general/QTitle.vue';
 </script>
 
 <style lang="scss">
-.q-card {
-  background: linear-gradient(to bottom right, #ffffff, #e5e5e5);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
-  mix-blend-mode: multiply;
-}
+
 </style>
