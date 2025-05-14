@@ -1,8 +1,8 @@
 <template>
   <q-page class="q-pa-md q-gutter-md items-center">
-    <role-card v-for="role in roles" :key="role.id" :role="role"/>
+    <q-title text="Roles" pageTitle />
 
-    <div class="text-h6 text-secondary">Data</div>
+    <q-title text="Data" content-title />
     <q-card flat bordered>
       <q-scroll-area
         class="q-pa-md"
@@ -11,6 +11,10 @@
         {{ roles }}
       </q-scroll-area>
     </q-card>
+    <q-title text="Cards" content-title />
+    <role-card v-for="role in roles" :key="role.id" :role="role" />
+
+
   </q-page>
 </template>
 
@@ -19,10 +23,12 @@ import { defineComponent, onMounted, ref } from 'vue';
 import { rolesData } from 'src/data/authData';
 import RoleCard from 'components/RoleCard.vue';
 import type { Role } from 'src/types/authTypes';
+import QTitle from 'components/QTitle.vue';
 
 export default defineComponent({
   name: 'DefaultRolesPage',
   components: {
+    QTitle,
     RoleCard,
   },
   setup() {
