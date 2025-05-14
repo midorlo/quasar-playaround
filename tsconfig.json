@@ -1,3 +1,10 @@
 {
-  "extends": "./.quasar/tsconfig.json"
+  "extends": "./.quasar/tsconfig.json",
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    // optional: damit alle .d.ts in src/types mitgeladen werden
+    "typeRoots": ["node_modules/@types", "src/types"]
+  }
 }

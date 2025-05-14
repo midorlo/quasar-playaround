@@ -42,6 +42,7 @@ body {
 .q-header {
   color: var(--primary);
   background: rgba(var(--white), 0);
+
   .q-toolbar {
     min-height: $header-height;
     padding: 0 $spacing-md;
@@ -59,4 +60,23 @@ body {
 
 .q-card {
   box-shadow: var(--q-shadow-1);
+}
+
+/* Überschreibe Standard-Überschriften-Größen */
+.q-markdown-content h1 {
+  font-size: 1.5em;
+  margin-top: 0.75em;
+  margin-bottom: 0.5em;
+}
+
+.q-markdown-content h2 {
+  font-size: 1.25em;
+  margin-top: 0.75em;
+  margin-bottom: 0.5em;
+}
+
+.q-markdown-content h3 {
+  font-size: 1.1em;
+  margin-top: 0.75em;
+  margin-bottom: 0.5em;
 }

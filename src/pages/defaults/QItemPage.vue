@@ -70,12 +70,6 @@
     <!-- 5. Dark Mode-Unterstützung -->
     <section>
       <h2 class="text-h4 q-mb-md">Dark Mode-Unterstützung</h2>
-      <q-item :class="{'q-item--dark': $q.dark.isActive}" class="q-pa-md">
-        <q-item-section>
-          <q-item-label class="text-h6">Item im Dark Mode</q-item-label>
-          <q-item-label caption>Dark Mode Beschreibung</q-item-label>
-        </q-item-section>
-      </q-item>
       <q-separator />
     </section>
 

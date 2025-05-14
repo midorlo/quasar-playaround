@@ -167,3 +167,4 @@ node_modules
 
 # local .env files
 .env.local*
+/src/css/app.css

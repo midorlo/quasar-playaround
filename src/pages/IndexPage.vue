@@ -1,8 +1,6 @@
 <template>
   <q-page class="q-pa-md">
-    <div class="container">
-      <h3>Midorlo</h3>
-    </div>
+    <QMarkdown file="/README.md" />
     <q-card flat style="background: transparent">
       <q-card-section horizontal>
         <q-card-section>
@@ -24,6 +22,7 @@
 
 <script setup lang="ts">
 import QTitle from 'components/general/QTitle.vue';
+import QMarkdown from 'components/QMarkdown.vue';
 </script>
 
 <style lang="scss">
