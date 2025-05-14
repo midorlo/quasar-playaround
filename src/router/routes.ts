@@ -3,34 +3,28 @@
 import type { RouteRecordRaw } from 'vue-router';
 import generatedRoutes from 'src/router/generated-routes';
 import IndexPage from 'pages/IndexPage.vue';
+import ErrorNotFound from 'pages/ErrorNotFound.vue';
+import MainLayout from 'layouts/MainLayout.vue';
 
-
-const defaultRoutes: RouteRecordRaw[] = [
+const routes: RouteRecordRaw[] = [
   {
     path: '',
-    component: () => import('layouts/MainLayout.vue'),
+    component: MainLayout,
     children: [
       {
+        name: 'home',
         path: '',
         component: IndexPage,
-        children: []
+        children: [],
       },
-    ]
+    ],
   },
-];
-
-const fallbackRoutes: RouteRecordRaw[] = [
+  ...generatedRoutes,
   {
     path: '/:catchAll(.*)*',
-    component: () => import('pages/ErrorNotFound.vue'),
+    name: 'error-404',
+    component: ErrorNotFound,
   },
-];
-
-// Kombinierte Routen
-const routes: RouteRecordRaw[] = [
-  ...defaultRoutes,
-  ...generatedRoutes,
-  ...fallbackRoutes,
 ];
 
 export default routes;

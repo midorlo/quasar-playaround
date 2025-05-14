@@ -1,3 +1,5 @@
+// src/quasar.config.ts
+
 // noinspection JSUnusedGlobalSymbols
 
 import { defineConfig } from '#q-app/wrappers';
