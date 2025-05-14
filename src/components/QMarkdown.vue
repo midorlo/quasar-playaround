@@ -1,9 +1,14 @@
 <template>
-  <!-- q-card füllt nun standardmäßig die verfügbare Fläche -->
-  <q-card v-bind="cardAttrs" class="fit" :class="cardClass" :style="cardStyle">
-    <!-- Card-Section mit reduziertem Top-Padding -->
-    <q-card-section class="q-pt-sm q-px-md q-pb-md">
-      <!-- Übergang zwischen Skeleton und Inhalten -->
+  <q-card v-bind="cardAttrs" :class="cardClass" :style="cardStyle">
+    <!-- Header Slot -->
+    <template v-if="$slots.header">
+      <q-card-section class="q-pa-none">
+        <slot name="header" />
+      </q-card-section>
+    </template>
+
+    <!-- Content Section -->
+    <q-card-section :class="`q-pa-${props.contentPadding}`">
       <transition-group
         appear
         tag="div"
@@ -18,7 +23,11 @@
         </div>
         <div v-else key="content">
           <template v-if="props.height">
-            <q-scroll-area :style="{ height: computedHeight }">
+            <q-scroll-area
+              :style="{ height: computedHeight }"
+              :native-scroll="props.scrollNative"
+              :content-style="{ scrollBehavior: 'smooth' }"
+            >
               <div v-html="displayHtml" class="q-markdown-content" />
             </q-scroll-area>
           </template>
@@ -28,107 +37,154 @@
         </div>
       </transition-group>
     </q-card-section>
+
+    <!-- Footer Slot -->
+    <template v-if="$slots.footer">
+      <q-card-section class="q-pa-none">
+        <slot name="footer" />
+      </q-card-section>
+    </template>
   </q-card>
 </template>
 
 <script lang="ts" setup>
-// Verhindert, dass alle Attribute automatisch auf das Root-Element angewendet werden
+// Prevent automatic attr binding on root
 defineOptions({ inheritAttrs: false });
 
 import {
-  computed,
-  defineProps,
-  getCurrentInstance,
-  onMounted,
   ref,
-  useAttrs,
+  computed,
   watch,
-  withDefaults,
+  onMounted,
+  onServerPrefetch,
+  getCurrentInstance,
+  useAttrs,
+  defineProps,
+  withDefaults
 } from 'vue';
 import { debounce } from 'quasar';
 import DOMPurify from 'dompurify';
 
 interface Props {
+  /** Optional custom MarkdownIt-like parser */
+  mdInstance?: { render: (src: string) => string };
+  /** Use native scrolling instead of Quasar scrollbars */
+  scrollNative?: boolean;
+  /** Padding size for content: xs, sm, md, lg, xl */
+  contentPadding?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  /** Raw markdown string */
   source?: string;
+  /** Path to markdown file under assets */
   file?: string;
+  /** Fixed height for scroll area */
   height?: string | number;
-  /** Wenn true, wird HTML gesäubert; bei false rohe Ausgabe */
+  /** Sanitize html output */
   sanitize?: boolean;
 }
 
-const props = withDefaults(defineProps<Props>(), { sanitize: true });
+const props = withDefaults(defineProps<Props>(), {
+  sanitize: true,
+  contentPadding: 'md',
+  scrollNative: false
+});
 
-// Alle nicht-Prop-Attribute einlesen (inkl. klassenspezifische Props wie flat, bordered etc.)
+// Extract card attrs
 const attrs = useAttrs();
-// Card-Attribute ohne Destructuring
 const cardClass = attrs.class as string | undefined;
 const cardStyle = attrs.style as string | Record<string, string> | undefined;
 const cardAttrs = Object.fromEntries(
-  Object.entries(attrs).filter(([key]) => !['class', 'style'].includes(key)),
+  Object.entries(attrs).filter(
+    ([k]) => k !== 'class' && k !== 'style'
+  )
 );
 
-// Raw Markdown content
-const rawMarkdown = ref<string>(props.source || '');
-
-// State für Loading & Error
-const loading = ref<boolean>(false);
+// Markdown state
+const rawMarkdown = ref(props.source || '');
+const loading = ref(false);
 const error = ref<string | null>(null);
 
-// Parsed HTML (debounced)
-const parsedHtml = ref<string>('');
+// Choose parser
+const vm = getCurrentInstance();
+const defaultMd = vm?.appContext.config.globalProperties.$md;
+const parser = props.mdInstance ?? defaultMd;
+
+// Parsed html
+const parsedHtml = ref('');
 const updateHtml = debounce(() => {
-  parsedHtml.value = md ? md.render(rawMarkdown.value) : rawMarkdown.value;
+  parsedHtml.value = parser
+    ? parser.render(rawMarkdown.value)
+    : rawMarkdown.value;
 }, 300);
 
-// Markdown parser-Instanz aus Vue globalProperties (z.B. MarkdownIt)
-const vm = getCurrentInstance();
-const md = vm?.appContext.config.globalProperties.$md;
+watch(rawMarkdown, () => updateHtml(), { immediate: true });
 
-// Watch rawMarkdown changes
-watch(
-  rawMarkdown,
-  () => {
-    updateHtml();
-  },
-  { immediate: true },
+// Import markdown files
+const modules = import.meta.glob<string>(
+  '../assets/**/*.md',
+  { query: '?raw', import: 'default' }
 );
 
-// Vite raw-loader für .md-Dateien im src/assets-Ordner
-const modules = import.meta.glob<string>('../assets/**/*.md', { query: '?raw', import: 'default' });
-
-onMounted(async () => {
+// Load file logic
+async function loadMarkdownFile() {
+  if (props.source || !props.file) return;
   loading.value = true;
   error.value = null;
   try {
-    if (!props.source && props.file) {
+    if (import.meta.env.SSR) {
+      const key = `../assets/${props.file}`;
+      const loader = modules[key];
+      if (!loader){
+        error.value ='File not found';
+        loading.value = false;
+        return;
+      }
+      rawMarkdown.value = await loader();
+    } else {
       if (props.file.startsWith('/')) {
         const res = await fetch(props.file);
-        if (!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
+        if (!res.ok) {
+          error.value =`HTTP ${res.status}`;
+          loading.value = false;
+          return;
+        }
         rawMarkdown.value = await res.text();
       } else {
         const key = `../assets/${props.file}`;
         const loader = modules[key];
-        if (loader) rawMarkdown.value = await loader();
-        else throw new Error(`File not found: ${props.file}`);
+        if (!loader) {
+          error.value ='File not found';
+          loading.value = false;
+          return;
+        }
+        rawMarkdown.value = await loader();
       }
     }
-  } catch (err) {
-    error.value = (err as Error).message;
+  } catch (e) {
+    error.value = (e as Error).message;
   } finally {
     loading.value = false;
   }
-});
+}
 
-// Je nach Flag sanitizen oder rohen HTML-String verwenden
-const displayHtml = computed<string>(() => {
-  return props.sanitize ? DOMPurify.sanitize(parsedHtml.value) : parsedHtml.value;
-});
+// SSR & client load
+onServerPrefetch(loadMarkdownFile);
+onMounted(loadMarkdownFile);
 
-// Höhe für Scroll-Area berechnen
-const computedHeight = computed<string>(() => {
-  if (props.height == null) return '';
-  return typeof props.height === 'number' ? `${props.height}px` : props.height;
-});
+// Display html
+const displayHtml = computed(() =>
+  props.sanitize
+    ? DOMPurify.sanitize(parsedHtml.value)
+    : parsedHtml.value
+);
+
+// Compute height
+const computedHeight = computed(() =>
+  props.height == null
+    ? ''
+    : typeof props.height === 'number'
+      ? `${props.height}px`
+      : props.height
+);
 </script>
 
 <style scoped>
@@ -136,21 +192,16 @@ const computedHeight = computed<string>(() => {
   font-size: 0.9rem;
   line-height: 1.5;
 }
-
-/* Überschriften mit reduziertem Top-Padding statt Margin über :deep() */
 .q-markdown-content :deep(h1) {
   font-size: 1.5em;
-  /* Oberes Padding reduziert */
-  padding: 0.25em 0 0.5em 0;
+  padding: 0.25em 0 0.5em;
 }
-
 .q-markdown-content :deep(h2) {
   font-size: 1.25em;
-  padding: 0.75em 0 0.5em 0;
+  padding: 0.75em 0 0.5em;
 }
-
 .q-markdown-content :deep(h3) {
   font-size: 1.1em;
-  padding: 0.75em 0 0.5em 0;
+  padding: 0.75em 0 0.5em;
 }
 </style>

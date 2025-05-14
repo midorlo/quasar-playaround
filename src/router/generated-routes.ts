@@ -4,7 +4,7 @@ import MainLayout from 'layouts/MainLayout.vue';
 
 const generatedRoutes: RouteRecordRaw[] = [
 { path: '/', component: MainLayout, children: [
-    { path: 'index', name: 'index-page', component: () => import('pages/IndexPage.vue') },
+    { path: 'home', name: 'home-page', component: () => import('pages/HomePage.vue') },
 
 ] },
 

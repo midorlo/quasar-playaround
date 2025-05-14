@@ -1,23 +1,38 @@
 // src/boot/markdown-it.ts
-import { boot } from 'quasar/wrappers'
-import MarkdownIt from 'markdown-it'
+// noinspection JSUnusedGlobalSymbols
 
+import { boot } from 'quasar/wrappers';
+import MarkdownIt from 'markdown-it';
+import hljs from 'highlight.js';
 
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
-    $md: MarkdownIt
+    $md: MarkdownIt;
   }
 }
 
 export default boot(({ app }) => {
-  // Basis-Instanz mit Standard-Optionen
-  const md = new MarkdownIt({
-    html: true,         // <b>... erlauben
-    linkify: true,      // URLs automatisch verlinken
-    typographer: true,  // „Anführungszeichen“ & co.
-    breaks:true,
-  })
-
+  // Erweiterte Instanz mit Commonmark und Plugins
+  const md: MarkdownIt = new MarkdownIt('commonmark', {
+    html: true,
+    linkify: true,
+    typographer: true,
+    breaks: true,
+    highlight: function (str: string, lang: string): string {
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          return (
+            '<pre class="hljs"><code>' +
+            hljs.highlight(str, { language: lang }).value +
+            '</code></pre>'
+          );
+        } catch {
+          // Handle error
+        }
+      }
+      return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+    },
+  });
   // Global verfügbar machen
-  app.config.globalProperties.$md = md
-})
+  app.config.globalProperties.$md = md;
+});

@@ -2,7 +2,7 @@
 
 import type { RouteRecordRaw } from 'vue-router';
 import generatedRoutes from 'src/router/generated-routes';
-import IndexPage from 'pages/IndexPage.vue';
+import HomePage from 'pages/HomePage.vue';
 import ErrorNotFound from 'pages/ErrorNotFound.vue';
 import MainLayout from 'layouts/MainLayout.vue';
 
@@ -14,7 +14,7 @@ const routes: RouteRecordRaw[] = [
       {
         name: 'home',
         path: '',
-        component: IndexPage,
+        component: HomePage,
         children: [],
       },
     ],

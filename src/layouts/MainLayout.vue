@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hhh Lpr lFf">
+  <q-layout view="hhh Lpr fff">
     <q-header>
       <header-menu />
     </q-header>
@@ -18,6 +18,36 @@
     <q-page-container class="q-pa-md-lg">
       <router-view class="q-pa-md-lg" />
     </q-page-container>
+
+    <q-footer >
+      <q-toolbar class="bg-grey-3 text-blue-9" inset>
+        <q-btn
+          flat
+          dense
+          icon="link"
+          href="https://github.com/midorlo/quasar-playaround"
+          target="_blank"
+          >Github Repo
+        </q-btn>
+        <q-btn
+          flat
+          dense
+          icon="link"
+          href="https://midorlo.github.io/quasar-playaround/#/"
+          target="_blank"
+          >Github Page
+        </q-btn>
+        <q-btn
+          flat
+          dense
+          icon="link"
+          href="https://quasar.dev/layout/grid/introduction-to-flexbox"
+          target="_blank"
+          >Quasar Docs
+        </q-btn>
+        made with ♥️ by midorlo
+      </q-toolbar>
+    </q-footer>
   </q-layout>
 </template>
 

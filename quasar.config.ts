@@ -12,7 +12,7 @@ const rootDir = path.dirname(fileURLToPath(import.meta.url));
 export default defineConfig((ctx) => ({
   boot: ['i18n', 'axios', 'markdown-it'],
   css: ['app.scss'],
-  extras: ['roboto-font', 'material-icons'],
+  extras: ['roboto-font', 'material-icons', 'material-symbols-sharp'],
   build: {
     target: {
       browser: ['es2022', 'firefox115', 'chrome115', 'safari14'],
@@ -77,7 +77,15 @@ export default defineConfig((ctx) => ({
 
   framework: {
     config: {},
-    plugins: [],
+    plugins: [
+      'Notify',
+      'Dialog',
+      'Loading',
+      'LocalStorage',
+      'Meta',
+      "Dark",
+      "LoadingBar",
+    ],
   },
   animations: 'all',
   ssr: {

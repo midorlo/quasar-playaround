@@ -14,8 +14,8 @@ export const navigationGroups: NavigationGroup[] = [
         id: 1000,
         title: 'Home',
         icon: 'home',
-        routeName: 'index',
-        routePath: 'index'
+        routeName: 'home',
+        routePath: 'home'
       }
     ],
   },
