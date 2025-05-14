@@ -4,7 +4,7 @@
 
       <!-- Logo links -->
     <q-btn flat dense round icon="menu" aria-label="Menu" />
-    <img src="~assets/logo-onlydev.png" alt="logo" class="logo" />
+    <img src="../assets/logos/onlydev-logo.png" alt="logo" class="logo" />
 
     <!-- Suchleiste zentriert -->
     <q-space />

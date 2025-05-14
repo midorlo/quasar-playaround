@@ -28,7 +28,7 @@ const miRolesDemo: NavigationMenuItem = {
     id: 3001,
     name: 'roles-demo',
     path: 'roles',
-    component: '/defaults/DefaultRolesPage.vue',
+    component: '/demo/RolesDemoPage.vue',
     lazyLoadComponent: false,
   }
 };
@@ -43,7 +43,7 @@ const miIconsDemo: NavigationMenuItem = {
     id: 3001,
     name: 'icons-demo',
     path: 'icons',
-    component: 'IconsDemoPage.vue',
+    component: 'QIconsDemoPage.vue',
     lazyLoadComponent: false,
   }
 };
@@ -58,7 +58,7 @@ const miQItemDemo: NavigationMenuItem = {
     id: 3002,
     name: 'q-item-demo',
     path: 'qitem',
-    component: 'pages/defaults/QItemPage.vue',
+    component: 'pages/demo/QItemDemoPage.vue',
     lazyLoadComponent: false,
   }
 };
