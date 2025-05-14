@@ -1,5 +1,8 @@
 <template>
   <q-page class="q-pa-md">
+    <div class="container">
+      <h3>Midorlo</h3>
+    </div>
     <q-card flat style="background: transparent">
       <q-card-section horizontal>
         <q-card-section>
@@ -24,5 +27,18 @@ import QTitle from 'components/general/QTitle.vue';
 </script>
 
 <style lang="scss">
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.container h3 {
+  font-size: 160px;
+  color: #f0f1f4;
+  text-shadow:
+    3px 3px 5px #fff,
+    -3px -3px 5px rgba(0, 0, 0, 0.4);
+}
 </style>
