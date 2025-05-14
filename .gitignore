@@ -168,3 +168,4 @@ node_modules
 # local .env files
 .env.local*
 /src/css/app.css
+/src/assets/markdown/README.md

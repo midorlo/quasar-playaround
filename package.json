@@ -17,6 +17,7 @@
     "prebuild": "npm run generate:routes",
     "build":    "quasar build",
     "generate:routes": "node scripts/codegen/generate-routes.cjs",
+    "generate:assetmd": "node scripts/copy-readme.cjs",
     "postinstall": "quasar prepare"
   },
 

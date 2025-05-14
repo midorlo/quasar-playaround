@@ -1,22 +1,12 @@
 <template>
   <q-page class="q-pa-md">
-    <QMarkdown source="https://raw.githubusercontent.com/midorlo/quasar-playaround/refs/heads/master/README.md" />
-    <q-card flat style="background: transparent">
-      <q-card-section horizontal>
-        <q-card-section>
-          <q-card class="q-pa-md">
-            <q-title text="Page Title" pageTitle />
-            <q-title text="Section Title" section-title />
-          </q-card>
-        </q-card-section>
-        <q-card-section>
-          <q-card class="q-pa-md"></q-card>
-        </q-card-section>
-        <q-card-section>
-          <q-card class="q-pa-md"></q-card>
-        </q-card-section>
-      </q-card-section>
-    </q-card>
+    <q-title text="Midorlo's Quasar Page" section-title />
+    <q-markdown
+      sanitize
+      file="markdown/README.md"
+      class="shadow-22"
+      height="400px"
+    />
   </q-page>
 </template>
 
