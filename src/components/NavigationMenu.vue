@@ -1,6 +1,6 @@
 <template>
   <q-scroll-area class="fit">
-    <q-list  bordered padding class="rounded-borders shadow-1">
+    <q-list bordered padding class="rounded-borders">
       <template v-for="group in groups" :key="group.id">
         <q-expansion-item
           expand-separator
@@ -16,17 +16,17 @@
         >
           <!-- Rekursive Darstellung von Unter-Gruppen -->
           <NavigationMenu v-if="group.groups && group.groups.length" :groups="group.groups" />
+
           <!-- Seiteneinträge -->
           <q-list padding dense>
             <q-item
               v-for="page in group.pages"
               :key="page.id"
+              class="tw-nav-item"
               clickable
-              :to="page.routePath"
-              :class="[
-                'tw-nav-item',
-                { 'tw-nav-item-active': route.path === page.routePath }
-              ]"
+              :to="normalizePath(page.routePath)"
+              exact
+              :class="{ 'tw-nav-item-active': route.path === normalizePath(page.routePath) }"
             >
               <q-item-section avatar>
                 <q-icon :name="page.icon || 'chevron_right'" />
@@ -57,12 +57,13 @@ import {
 } from 'quasar';
 import type { NavigationGroup } from 'src/types/navigationTypes';
 
-defineOptions({
-  name: 'NavigationMenu'
-});
+defineOptions({ name: 'NavigationMenu' });
 
-// aktuelle Route ermitteln
+// aktuelle Route
 const route = useRoute();
+
+// Pfad normalisieren (führt immer zu absolutem Pfad)
+const normalizePath = (path: string): string => path.startsWith('/') ? path : '/' + path;
 
 defineProps<{ groups: NavigationGroup[] }>();
 </script>
@@ -70,33 +71,34 @@ defineProps<{ groups: NavigationGroup[] }>();
 <style scoped>
 /* Tailwind-ähnliche Styles */
 .tw-accordion-group {
-  background-color: #f9fafb; /* gray-50 */
-  border-radius: 0.375rem; /* rounded-md */
-  margin-bottom: 0.5rem; /* mb-2 */
+  background-color: #f9fafb;
+  border-radius: 0.375rem;
+  margin-bottom: 0.5rem;
 }
 .tw-accordion-header {
-  padding: 0.75rem 1rem; /* py-3 px-4 */
-  font-weight: 600; /* font-semibold */
-  color: #1f2937; /* gray-800 */
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  color: #1f2937;
 }
 .tw-accordion-header:hover {
-  background-color: #e5e7eb; /* gray-200 */
+  background-color: #e5e7eb;
 }
 .tw-accordion-content {
-  padding: 0.5rem 1rem; /* py-2 px-4 */
-  background-color: #ffffff; /* white */
+  padding: 0.5rem 1rem;
+  background-color: #ffffff;
 }
 .tw-nav-item {
-  margin: 0.25rem 0; /* my-1 */
-  padding: 0.5rem 1rem; /* py-2 px-4 */
-  border-radius: 0.375rem; /* rounded-md */
+  margin: 0.25rem 0;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
 }
 .tw-nav-item:hover {
-  background-color: #f3f4f6; /* gray-100 */
+  background-color: #f3f4f6;
 }
+
 /* Hervorhebung der aktiven Seite */
 .tw-nav-item-active {
-  background-color: #3b82f6; /* blue-500 */
+  background-color: #3b82f6;
   color: #ffffff !important;
 }
 .tw-nav-item-active q-icon {

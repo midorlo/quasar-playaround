@@ -9,11 +9,11 @@ const generatedRoutes: RouteRecordRaw[] = [
 ] },
 
 { path: '/demo', component: () => MainLayout, children: [
-    { path: 'q-icons-demo', name: 'demo-q-icons-demo-page', component: () => import('pages/demo/QIconsDemoPage.vue') },
+    { path: 'q-icons', name: 'demo-q-icons-page', component: () => import('pages/demo/QIconsPage.vue') },
 
-    { path: 'q-item-demo', name: 'demo-q-item-demo-page', component: () => import('pages/demo/QItemDemoPage.vue') },
+    { path: 'q-items', name: 'demo-q-items-page', component: () => import('pages/demo/QItemsPage.vue') },
 
-    { path: 'roles-demo', name: 'demo-roles-demo-page', component: () => import('pages/demo/RolesDemoPage.vue') },
+    { path: 'roles', name: 'demo-roles-page', component: () => import('pages/demo/RolesPage.vue') },
 
 ] },
 
