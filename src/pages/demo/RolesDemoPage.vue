@@ -17,7 +17,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue';
 import { rolesData } from 'src/data/authData';
-import RoleCard from 'components/auth/role/RoleCard.vue';
+import RoleCard from 'components/RoleCard.vue';
 import type { Role } from 'src/types/authTypes';
 
 export default defineComponent({

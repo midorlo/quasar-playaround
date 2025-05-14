@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import QTitle from 'components/general/QTitle.vue';
+import QTitle from 'components/QTitle.vue';
 import QMarkdown from 'components/QMarkdown.vue';
 </script>
 

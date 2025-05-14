@@ -1,29 +1,28 @@
 <template>
   <div class="q-pa-md">
     <q-toolbar class="header-toolbar q-pl-xl">
-
       <!-- Logo links -->
-    <q-btn flat dense round icon="menu" aria-label="Menu" />
-    <img src="../assets/logos/onlydev-logo.png" alt="logo" class="logo" />
+      <q-btn flat dense round icon="menu" aria-label="Menu" />
+      <img src="assets/logos/onlydev-logo.png" alt="logo" class="logo" />
 
-    <!-- Suchleiste zentriert -->
-    <q-space />
-    <q-input
-      v-model="searchInput"
-      class="search-container"
-      rounded
-      dense
-      outlined
-      clearable
-      standout
-      type="text"
-      style="width: 40%"
-    />
+      <!-- Suchleiste zentriert -->
+      <q-space />
+      <q-input
+        v-model="searchInput"
+        class="search-container"
+        rounded
+        dense
+        outlined
+        clearable
+        standout
+        type="text"
+        style="width: 40%"
+      />
 
-    <!-- Benachrichtigungs- und Kontosymbole rechts -->
-    <q-btn flat icon="notifications" class="icon-style" ripple />
-    <q-btn flat icon="account_circle" class="icon-style" ripple />
-  </q-toolbar>
+      <!-- Benachrichtigungs- und Kontosymbole rechts -->
+      <q-btn flat icon="notifications" class="icon-style" ripple />
+      <q-btn flat icon="account_circle" class="icon-style" ripple />
+    </q-toolbar>
   </div>
 </template>
 
@@ -39,7 +38,6 @@ const searchInput = ref('');
   max-height: 48px;
   padding-left: 16px;
 }
-
 
 /* Container der Suchleiste */
 .search-container {

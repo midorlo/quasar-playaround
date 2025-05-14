@@ -36,7 +36,7 @@
 import { ref } from 'vue';
 import HeaderMenu from 'components/HeaderMenu.vue';
 import { navigationMenuItemsData } from 'src/data/navigationData';
-import MenuItemEntry from 'components/navigation/MenuItemEntry.vue';
+import MenuItemEntry from 'components/MenuItemEntry.vue';
 
 const menuItems = navigationMenuItemsData;
 const leftDrawerOpen = ref(false);
