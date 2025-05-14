@@ -33,6 +33,21 @@ const miRolesDemo: NavigationMenuItem = {
   }
 };
 
+const miIconsDemo: NavigationMenuItem = {
+  id: 3002,
+  title: 'Icons Demo',
+  icon: 'home',
+  position: 2,
+  enabled: true,
+  route: {
+    id: 3001,
+    name: 'icons-demo',
+    path: 'icons',
+    component: 'IconsDemoPage.vue',
+    lazyLoadComponent: false,
+  }
+};
+
 const miQItemDemo: NavigationMenuItem = {
   id: 3002,
   title: 'Q-Item Demo',
@@ -52,6 +67,7 @@ export const navigationMenuItemsData: NavigationMenuItem[] = [
   miHome,
   miRolesDemo,
   miQItemDemo,
+  miIconsDemo
 ];
 
 export function generateRoutesFromMenuItems(): RouteRecordRaw[] {

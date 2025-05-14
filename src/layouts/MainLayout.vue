@@ -10,7 +10,7 @@
       :mini="miniState"
       :mini-to="50"
       :breakpoint="640"
-      style="padding-left: 16px;"
+      style="padding-left: 16px"
     >
       <q-card class="custom-card">
         <q-card-section>
@@ -43,13 +43,11 @@ const leftDrawerOpen = ref(false);
 const miniState = ref(false);
 </script>
 <style scoped>
-.custom-drawer {
-  margin-left: 116px; /* Hier kannst du den gewünschten Abstand anpassen */
-  padding-left: 110px;
-}
 .custom-card {
   background: transparent;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1), inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 16px;
 }
