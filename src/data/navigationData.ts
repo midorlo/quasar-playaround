@@ -1,87 +1,48 @@
 // data/navigationData.ts
 
-import type { NavigationMenuItem } from 'src/types/navigationTypes';
-import type { RouteRecordRaw } from 'vue-router';
+import type { NavigationGroup } from 'src/types/navigationTypes';
 
-const miHome: NavigationMenuItem = {
-  id: 1000,
-  title: 'Home',
-  icon: 'home',
-  position: 1,
-  enabled: true,
-  route: {
-    id: 1000,
-    name: 'home',
-    path: '/',
-    component: 'IndexPage.vue',
-    lazyLoadComponent: true,
+export const navigationGroups: NavigationGroup[] = [
+  {
+    id: 100,
+    title: 'Main Sections',
+    icon : 'home',
+    pages: [
+      {
+        id: 1000,
+        title: 'Home',
+        icon: 'home',
+        routeName: 'index',
+        routePath: 'index'
+      }
+    ],
+  },
+  {
+    id: 101,
+    title: 'Demos',
+    icon : 'home',
+    pages: [
+      {
+        id: 1001,
+        title: 'Roles Demo',
+        icon: 'home',
+        routeName: 'demo-roles-demo-page',
+        routePath: '/demo/demo-roles-demo'
+      },
+      {
+        id: 1002,
+        title: 'Q-Item Demo',
+        icon: 'home',
+        routeName: 'demo-q-item-demo-page',
+        routePath: '/demo/q-item-demo'
+      },
+      {
+        id: 1003,
+        title: 'Q-Icons Demo',
+        icon: 'home',
+        routeName: 'demo-q-icons-demo-page',
+        routePath: '/demo/q-icons-demo'
+      }
+    ],
   }
-};
-
-const miRolesDemo: NavigationMenuItem = {
-  id: 3001,
-  title: 'Roles Demo',
-  icon: 'home',
-  position: 1,
-  enabled: true,
-  route: {
-    id: 3001,
-    name: 'roles-demo',
-    path: 'roles',
-    component: '/demo/RolesDemoPage.vue',
-    lazyLoadComponent: false,
-  }
-};
-
-const miIconsDemo: NavigationMenuItem = {
-  id: 3002,
-  title: 'Icons Demo',
-  icon: 'home',
-  position: 2,
-  enabled: true,
-  route: {
-    id: 3001,
-    name: 'icons-demo',
-    path: 'icons',
-    component: 'QIconsDemoPage.vue',
-    lazyLoadComponent: false,
-  }
-};
-
-const miQItemDemo: NavigationMenuItem = {
-  id: 3002,
-  title: 'Q-Item Demo',
-  icon: 'home',
-  position: 2,
-  enabled: true,
-  route: {
-    id: 3002,
-    name: 'q-item-demo',
-    path: 'qitem',
-    component: 'pages/demo/QItemDemoPage.vue',
-    lazyLoadComponent: false,
-  }
-};
-
-export const navigationMenuItemsData: NavigationMenuItem[] = [
-  miHome,
-  miRolesDemo,
-  miQItemDemo,
-  miIconsDemo
 ];
-
-export function generateRoutesFromMenuItems(): RouteRecordRaw[] {
-  return navigationMenuItemsData
-    .filter(item => item.enabled)
-    .map(item => {
-      const path = item.route.path;
-      const routeName = item.route.name;
-      const componentPath = `../pages/${item.route.component}`;
-      const component = () => import(/* @vite-ignore */componentPath);
-      return {
-        name: routeName,
-        path: path,
-        component: component,
-      };
-    });
-}

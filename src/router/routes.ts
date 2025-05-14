@@ -7,7 +7,7 @@ import IndexPage from 'pages/IndexPage.vue';
 
 const defaultRoutes: RouteRecordRaw[] = [
   {
-    path: '/',
+    path: '',
     component: () => import('layouts/MainLayout.vue'),
     children: [
       {

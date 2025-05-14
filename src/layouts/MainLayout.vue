@@ -10,24 +10,13 @@
       :mini="miniState"
       :mini-to="50"
       :breakpoint="640"
-      style="padding-left: 16px"
+      style="padding-left: 16px; padding-right: 46px"
     >
-      <q-card class="custom-card">
-        <q-card-section>
-          <q-list class="q-pa-none">
-            <menu-item-entry
-              v-for="item in menuItems"
-              :key="item.title"
-              :menu-item="item"
-              class="q-pl-xl"
-            ></menu-item-entry>
-          </q-list>
-        </q-card-section>
-      </q-card>
+      <NavigationMenu :groups="navigationGroups" />
     </q-drawer>
 
-    <q-page-container>
-      <router-view />
+    <q-page-container class="q-pa-md-lg">
+      <router-view class="q-pa-md-lg" />
     </q-page-container>
   </q-layout>
 </template>
@@ -35,10 +24,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import HeaderMenu from 'components/HeaderMenu.vue';
-import { navigationMenuItemsData } from 'src/data/navigationData';
-import MenuItemEntry from 'components/MenuItemEntry.vue';
+import NavigationMenu from 'src/components/NavigationMenu.vue';
+import { navigationGroups } from 'src/data/navigationData';
 
-const menuItems = navigationMenuItemsData;
 const leftDrawerOpen = ref(false);
 const miniState = ref(false);
 </script>

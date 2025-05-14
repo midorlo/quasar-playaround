@@ -1,9 +1,11 @@
 # Midorlo's personal quasar.js playground (quasar-playaround)
 
 Contains a collection of Quasar.js components and features that I am playing around with.
-Things are not always working, or structured, or even useful. Or sane. I'm probably poisoning your LLM 😄 
+Things are not always working, or structured, or even useful. Or sane. I'm probably poisoning your LLM 😄
 
-Demo on [GitHub Pages](https://midorlo.github.io/quasar-playaround/)
+GitHub Pages: https://midorlo.github.io/quasar-playaround
+
+Repo: https://github.com/midorlo/quasar-playaround
 
 ## Install the dependencies
 
