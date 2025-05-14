@@ -7,14 +7,19 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "lint": "eslint -c ./eslint.config.js \"./src*/**/*.{ts,js,cjs,mjs,vue}\"",
-    "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
-    "test": "echo \"No test specified\" && exit 0",
-    "dev": "quasar dev",
-    "dev:bex": "quasar dev --mode bex --target chrome",
-    "build": "quasar build",
+    "lint":    "eslint -c ./eslint.config.js \"./src*/**/*.{ts,js,cjs,mjs,vue}\"",
+    "format":  "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
+    "pretest":  "npm run generate:routes",
+    "test":     "echo \"No test specified\" && exit 0",
+    "predev":   "npm run generate:routes",
+    "dev":      "quasar dev",
+    "dev:bex":  "quasar dev --mode bex --target chrome",
+    "prebuild": "npm run generate:routes",
+    "build":    "quasar build",
+    "generate:routes": "node scripts/codegen/generate-routes.cjs",
     "postinstall": "quasar prepare"
   },
+
   "dependencies": {
     "@fontsource/inter": "^5.2.5",
     "@quasar/extras": "^1.16.4",

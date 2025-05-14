@@ -1,0 +1,9 @@
+// Diese Datei wird automatisch generiert. Änderungen gehen beim nächsten Build verloren.
+import type { RouteRecordRaw } from 'vue-router';
+import MainLayout from 'layouts/MainLayout.vue';
+
+const generatedRoutes: RouteRecordRaw[] = [
+%layout_routes%
+];
+
+export default generatedRoutes;

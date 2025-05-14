@@ -1,0 +1,3 @@
+{ path: '%route_path%', component: () => MainLayout, children: [
+%page_routes%
+] },

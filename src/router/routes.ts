@@ -1,17 +1,23 @@
 //router/routes.ts
 
 import type { RouteRecordRaw } from 'vue-router';
-import { generateRoutesFromMenuItems } from 'src/data/navigationData';
+import generatedRoutes from 'src/router/generated-routes';
+import IndexPage from 'pages/IndexPage.vue';
 
 
-const generatedRoutes: RouteRecordRaw[] = [
+const defaultRoutes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
-    children: generateRoutesFromMenuItems()
+    children: [
+      {
+        path: '',
+        component: IndexPage,
+        children: []
+      },
+    ]
   },
 ];
-
 
 const fallbackRoutes: RouteRecordRaw[] = [
   {
@@ -22,6 +28,7 @@ const fallbackRoutes: RouteRecordRaw[] = [
 
 // Kombinierte Routen
 const routes: RouteRecordRaw[] = [
+  ...defaultRoutes,
   ...generatedRoutes,
   ...fallbackRoutes,
 ];
