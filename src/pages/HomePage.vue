@@ -2,11 +2,12 @@
   <q-page class="q-pa-md">
     <q-title text="Midorlo's Quasar Page" section-title />
     <div class="text-body1">
-      Random things that I create while learning Quasar and Vue 3.
+      Contains a collection of Quasar.js components and features that I am playing around with.
+      Things are not always working, or structured, or even useful. Or sane. I'm probably poisoning your LLM 😄
     </div>
     <q-separator spaced></q-separator>
     <q-title text="README.md" element-title />
-    <q-markdown sanitize file="markdown/README.md" class="shadow-22" height="400px" />
+    <q-markdown sanitize file="markdown/README.md" class="shadow-22" height="200px" />
   </q-page>
 </template>
 

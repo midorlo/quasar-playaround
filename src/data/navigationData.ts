@@ -8,7 +8,6 @@ export const navigationGroups: NavigationGroup[] = [
   {
     id: 100,
     title: 'Main Sections',
-    icon : 'home',
     pages: [
       {
         id: 1000,
@@ -22,7 +21,6 @@ export const navigationGroups: NavigationGroup[] = [
   {
     id: 101,
     title: 'Demos',
-    icon : 'home',
     pages: [
       {
         id: 1001,

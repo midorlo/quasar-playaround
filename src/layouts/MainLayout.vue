@@ -1,8 +1,6 @@
 <template>
-  <q-layout view="hhh Lpr fff">
-    <q-header>
-      <header-menu />
-    </q-header>
+  <q-layout view="Hhh Lpr fff">
+    <k-header />
 
     <q-drawer
       v-model="leftDrawerOpen"
@@ -19,7 +17,7 @@
       <router-view class="q-pa-md-lg" />
     </q-page-container>
 
-    <q-footer >
+    <q-footer>
       <q-toolbar class="bg-grey-3 text-blue-9" inset>
         <q-btn
           flat
@@ -53,7 +51,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import HeaderMenu from 'components/HeaderMenu.vue';
+import KHeader from 'components/header/KHeader.vue';
 import NavigationMenu from 'src/components/NavigationMenu.vue';
 import { navigationGroups } from 'src/data/navigationData';
 

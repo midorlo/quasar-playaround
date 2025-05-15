@@ -44,7 +44,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
 import { useRoute } from 'vue-router';
 import {
   QList,
