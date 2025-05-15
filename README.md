@@ -1,6 +1,6 @@
 # Midorlo's personal quasar.js playground (quasar-playaround)
 
-![github-pages](https://github.com/midorlo/quasar-playaround/actions/workflows/github-pages/badge.svg)
+![github-pages](https://github.com/midorlo/quasar-playaround/actions/workflows/github-pages.yml/badge.svg)
 
 Contains a collection of Quasar.js components and features that I am playing around with.
 Things are not always working, or structured, or even useful. Or sane. I'm probably poisoning your LLM 😄
