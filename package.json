@@ -13,6 +13,7 @@
     "test": "echo \"No test specified\" && exit 0",
     "predev": "npm run generate:routes",
     "dev": "quasar dev",
+    "dev:ssr": "quasar dev --mode ssr",
     "dev:bex": "quasar dev --mode bex --target chrome",
     "prebuild": "npm run generate:routes",
     "build": "quasar build",
